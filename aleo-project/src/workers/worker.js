@@ -18,7 +18,7 @@ async function localProgramExecution(program, aleoFunction, inputs) {
   const account = new Account();
   programManager.setAccount(account);
 
-  const executionResponse = await programManager.executeOffline(
+  const executionResponse = await programManager.run(
     program,
     aleoFunction,
     inputs,
@@ -41,7 +41,7 @@ async function deployProgram(program) {
 
   // Use existing account with funds
   const account = new Account({
-    privateKey: "user1PrivateKey",
+    privateKey: process.env.privateKey,
   });
 
   const recordProvider = new NetworkRecordProvider(account, networkClient);
